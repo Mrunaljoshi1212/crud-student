@@ -1,29 +1,27 @@
-# crud
+# Vue Student CRUD Application
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple **Student Management CRUD application** built using **Vue 3 + Vite** with a **JSON Server** as a mock backend.  
+This project demonstrates basic CRUD operations: **Create, Read, Update, Delete**.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
+- Add new students
+- View student list
+- Update student details
+- Delete students
+- REST API integration using JSON Server
+- Clean and simple UI
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Tech Stack
+- **Frontend:** Vue 3, Vite, JavaScript, HTML, CSS
+- **Backend (Mock):** JSON Server
+- **Package Manager:** npm
 
-## Project Setup
+-## Install dependencies
+- npm install
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
+## Run the Vue application
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
