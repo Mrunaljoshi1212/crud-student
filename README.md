@@ -20,8 +20,9 @@ This project demonstrates basic CRUD operations: **Create, Read, Update, Delete*
 - **Backend (Mock):** JSON Server
 - **Package Manager:** npm
 
--## Install dependencies
+## Install dependencies
 - npm install
-
+  
+---
 ## Run the Vue application
 npm run dev
