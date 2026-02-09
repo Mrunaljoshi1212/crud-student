@@ -1,0 +1,15 @@
+
+
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Mrunal",
+      "email": "mrunal@gmail.com",
+      "phone": "9876543210",
+      "status": "Active",
+      "dob": "2002-12-12",
+      "address": "Pune"
+    }
+  ]
+}
