@@ -1,15 +1,47 @@
 <template>
-  ...
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Add Student</h4>
+      </div>
+
+      <div class="card-body">
+        <div
+          class="mb-3"
+          v-for="field in studentSchema"
+          :key="field.key"
+        >
+          <label>
+            {{ field.label }}
+            <span v-if="field.required" class="text-danger">*</span>
+          </label>
+
+          <input
+            :type="field.type || 'text'"
+            v-model="student[field.key]"
+            class="form-control"
+            :class="showError && field.required && !student[field.key]
+              ? 'is-invalid'
+              : ''"
+          />
+        </div>
+
+        <button class="btn btn-primary" @click="saveStudent">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-import axios from "axios";
-import { studentSchema } from "@/config/studentSchema";
 
-const API_URL = import.meta.env.VITE_API_URL;
+<script>
+
+import { studentSchema } from "@/config/studentSchema";
+import { createStudent } from "@/services/api";
 
 export default {
-  name: "studentsCreate",
+  name: "StudentCreate",
   data() {
     const student = {};
     studentSchema.forEach(field => {
@@ -36,7 +68,7 @@ export default {
       }
 
       try {
-        await axios.post(`${API_URL}/students`, this.student);
+        await createStudent(this.student);
         alert("Student added successfully");
         this.$router.push("/students");
       } catch (error) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div class="card">
       <div class="card-header">
         <h4>
@@ -42,7 +42,7 @@
 
                 <button
                   class="btn btn-danger btn-sm mx-1"
-                  @click="deleteStudent(student.id)"
+                  @click="removeStudent(student.id)"
                 >
                   Delete
                 </button>
@@ -64,10 +64,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import { studentSchema } from "@/config/studentSchema";
 
-const API_URL = import.meta.env.VITE_API_URL;
+import { studentSchema } from "@/config/studentSchema";
+import { getStudents, deleteStudent } from "@/services/api";
 
 export default {
   name: "StudentView",
@@ -78,12 +77,12 @@ export default {
     };
   },
   mounted() {
-    this.getStudents();
+    this.loadStudents();
   },
   methods: {
-    async getStudents() {
+    async loadStudents() {
       try {
-        const res = await axios.get(`${API_URL}/students`);
+        const res = await getStudents();
         this.students = res.data;
       } catch (error) {
         console.error(error);
@@ -91,17 +90,26 @@ export default {
       }
     },
 
-    async deleteStudent(id) {
+    async removeStudent(id) {
       if (!confirm("Are you sure you want to delete this student?")) return;
 
       try {
-        await axios.delete(`${API_URL}/students/${id}`);
-        this.getStudents();
+        await deleteStudent(id);
+        this.loadStudents();
       } catch (error) {
         console.error(error);
-        alert("Failed to delete student");
+        alert(
+          "Delete failed (mock API – delete is simulated only)"
+        );
       }
     }
   }
 };
 </script>
+
+<style scoped>
+.table th,
+.table td {
+  vertical-align: middle;
+}
+</style>
